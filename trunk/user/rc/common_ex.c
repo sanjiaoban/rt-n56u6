@@ -421,32 +421,73 @@ restart_all_sysctl(void)
 #endif
 }
 
-void
-char_to_ascii(char *output, char *input)
+/**
+* detect Chinese
+* @author 荒野无灯
+* @param str the str to detect
+* @param sz string total bytes
+* @return
+*/
+static int can_be_chinese_utf8(const uint8_t *str, int sz)
 {
-	int i;
-	char tmp[10];
-	char *ptr;
+        int len = strlen (str);
+        if (( len >= 3) &&
+                (*str >= 0xe4 && *str <= 0xe9)
+                && (*(str+1) >= 0x80 && *(str+1) <= 0xbf)
+                && (*(str+2) >= 0x80 && *(str+2) <= 0xbf)
+                        ) {
+                return 1;
+        }
 
-	ptr = output;
+        if ( (len >= 2 && (sz >= 3)) &&
+                 (*(str-1) >= 0xe4 && *(str-1) <= 0xe9)
+                 && (*str >= 0x80 && *str <= 0xbf)
+                 && (*(str+1) >= 0x80 && *(str+1) <= 0xbf)
+                        ) {
+                return 1;
+        }
 
-	for ( i=0; i<strlen(input); i++ ) {
-		if ((input[i]>='0' && input[i] <='9')
-		   ||(input[i]>='A' && input[i]<='Z')
-		   ||(input[i] >='a' && input[i]<='z')
-		   || input[i] == '!' || input[i] == '*'
-		   || input[i] == '(' || input[i] == ')'
-		   || input[i] == '_' || input[i] == '-'
-		   || input[i] == '\'' || input[i] == '.') {
-			*ptr = input[i];
-			ptr ++;
-		} else {
-			sprintf(tmp, "%%%.02X", input[i]);
-			strcpy(ptr, tmp);
-			ptr += 3;
-		}
-	}
-	*(ptr) = '\0';
+        if (( len >= 1 && (sz >= 3))
+                && (*(str-2) >= 0xe4 && *(str-2) <= 0xe9 )
+                && ((*(str-1) >= 0x80 && *(str-1) <= 0xbf)
+                        || (*str >= 0x80 && *str <= 0xbf))) {
+                return 1;
+        }
+        return 0;
+}
+
+void char_to_ascii(char *output, char *input)
+{
+        int i;
+        char tmp[10];
+        char *ptr;
+        char *input_ptr;
+        input_ptr = input;
+        int str_len;
+
+        ptr = output;
+        str_len = strlen(input);
+
+        for ( i=0; i<str_len; i++, input_ptr++ ) {
+                if ((input[i]>='0' && input[i] <='9')
+                        ||(input[i]>='A' && input[i]<='Z')
+                        ||(input[i] >='a' && input[i]<='z')
+                        || input[i] == '!' || input[i] == '*'
+                        || input[i] == '(' || input[i] == ')'
+                        || input[i] == '_' || input[i] == '-'
+                        || input[i] == '\'' || input[i] == '.') {
+                        *ptr = input[i];
+                        ptr ++;
+                } else if(can_be_chinese_utf8(input_ptr, str_len)) {
+                        *ptr = input[i];
+                        ptr ++;
+                } else {
+                        sprintf(tmp, "%%%.02X", input[i]);
+                        strcpy(ptr, tmp);
+                        ptr += 3;
+                }
+        }
+        *(ptr) = '\0';
 }
 
 int

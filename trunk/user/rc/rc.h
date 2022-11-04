@@ -173,7 +173,8 @@ void update_router_mode();
 char *mac_conv(const char *mac_nvkey, int idx, char *buf);
 char *mac_conv2(const char *mac_nvkey, int idx, char *buf);
 void get_eeprom_params(void);
-void char_to_ascii(char *output, char *input);
+//void char_to_ascii(char *output, char *input);
+void char_to_ascii(char *output, uint8_t *input);
 unsigned int get_param_int_hex(const char *param);
 void load_user_config(FILE *fp, const char *dir_name, const char *file_name, const char **forbid_list);
 int is_module_loaded(const char *module_name);
@@ -512,19 +513,6 @@ int start_services_once(int is_ap_mode);
 void stop_services(int stopall);
 void stop_services_lan_wan(void);
 void stop_misc(void);
-#if defined(APP_WIFIDOG)
-int is_wifidog_run(void);
-void stop_wifidog(void);
-void run_wifidog(void);
-void restart_wifidog(void);
-#endif
-
-#if defined(APP_NGROK)
-int is_ngrok_run(void);
-void stop_ngrok(void);
-void run_ngrok(void);
-void restart_ngrok(void);
-#endif
 
 /* services_ex.c */
 int fill_dnsmasq_servers(void);
@@ -684,10 +672,8 @@ int stop_inicd(void);
 void set_cpu_affinity(int is_ap_mode);
 void set_vpn_balancing(const char *vpn_ifname);
 #else
-//inline void set_cpu_affinity(int is_ap_mode) {}
-//inline void set_vpn_balancing(const char *vpn_ifname) {}
-static inline void set_cpu_affinity(int is_ap_mode) {}
-static inline void set_vpn_balancing(const char *vpn_ifname) {}
+#define set_cpu_affinity(x)
+#define set_vpn_balancing(ptr)
 #endif
 
 /* rstats.c */

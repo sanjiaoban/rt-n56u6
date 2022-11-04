@@ -512,19 +512,6 @@ int start_services_once(int is_ap_mode);
 void stop_services(int stopall);
 void stop_services_lan_wan(void);
 void stop_misc(void);
-#if defined(APP_WIFIDOG)
-int is_wifidog_run(void);
-void stop_wifidog(void);
-void run_wifidog(void);
-void restart_wifidog(void);
-#endif
-
-#if defined(APP_NGROK)
-int is_ngrok_run(void);
-void stop_ngrok(void);
-void run_ngrok(void);
-void restart_ngrok(void);
-#endif
 
 /* services_ex.c */
 int fill_dnsmasq_servers(void);
@@ -682,12 +669,10 @@ int stop_inicd(void);
 #if defined (USE_SMP)
 /* smp.c */
 void set_cpu_affinity(int is_ap_mode);
-void set_vpn_balancing(const char *vpn_ifname);
+void set_vpn_balancing(const char *vpn_ifname, int is_server);
 #else
-//inline void set_cpu_affinity(int is_ap_mode) {}
-//inline void set_vpn_balancing(const char *vpn_ifname) {}
-static inline void set_cpu_affinity(int is_ap_mode) {}
-static inline void set_vpn_balancing(const char *vpn_ifname) {}
+#define set_cpu_affinity(x)
+#define set_vpn_balancing(ptr,val)
 #endif
 
 /* rstats.c */

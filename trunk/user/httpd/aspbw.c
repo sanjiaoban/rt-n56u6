@@ -102,6 +102,13 @@ size_t strlcpy(char *d, const char *s, size_t bufsize)
 	return ret;
 }
 
+/**
+ * hex char to int
+ * @author 荒野无灯
+ * @date 2016-08-01 12:30
+ * @param hex
+ * @return int
+ */
 static int hex_char_to_int(const uint8_t *hex)
 {
         int val;
@@ -119,6 +126,13 @@ static int hex_char_to_int(const uint8_t *hex)
         return val;
 }
 
+/**
+ * @author 荒野无灯
+ * @date 2016-08-01 12:30
+ * @param str the str to detect
+ * @param sz string total bytes
+ * @return
+ */
 static int can_be_chinese_utf8(const uint8_t *str, int sz)
 {
         int len = strlen (str);
@@ -149,6 +163,13 @@ static int can_be_chinese_utf8(const uint8_t *str, int sz)
         return 0;
 }
 
+/**
+ * @author 荒野无灯
+ * @date 2016-08-01 12:30
+ * @param str the str to detect
+ * @param sz string total bytes
+ * @return int
+ */
 static int can_be_ascii_utf8(const uint8_t *str, int sz)
 {
         int len = strlen (str);
@@ -167,6 +188,12 @@ static int can_be_ascii_utf8(const uint8_t *str, int sz)
         return 0;
 }
 
+/**
+ * @param input the string to validate
+ * @author 荒野无灯
+ * @date 2016-08-01 12:30
+ * @return int
+ */
 static int is_valid_hex_string(uint8_t *input)
 {
         int i;
@@ -198,7 +225,18 @@ static int is_valid_hex_string(uint8_t *input)
         return is_valid_ascii_or_Chinese;
 }
 
-void char_to_ascii(char *output, uint8_t *input)
+
+
+
+/**
+* detect Chinese
+* @author 荒野无灯
+* @param str the str to detect
+* @param sz string total bytes
+* @return
+*/
+void
+char_to_ascii(char *output, uint8_t *input)
 {
         int i;
         char tmp[10];
@@ -234,7 +272,6 @@ void char_to_ascii(char *output, uint8_t *input)
         }
         *ptr = '\0';
 }
-
 int do_f(const char *path, webs_t wp)
 {
 	FILE *fp;

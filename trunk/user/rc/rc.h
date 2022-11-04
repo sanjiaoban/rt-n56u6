@@ -173,8 +173,7 @@ void update_router_mode();
 char *mac_conv(const char *mac_nvkey, int idx, char *buf);
 char *mac_conv2(const char *mac_nvkey, int idx, char *buf);
 void get_eeprom_params(void);
-//void char_to_ascii(char *output, char *input);
-void char_to_ascii(char *output, uint8_t *input);
+void char_to_ascii(char *output, char *input);
 unsigned int get_param_int_hex(const char *param);
 void load_user_config(FILE *fp, const char *dir_name, const char *file_name, const char **forbid_list);
 int is_module_loaded(const char *module_name);
@@ -670,10 +669,10 @@ int stop_inicd(void);
 #if defined (USE_SMP)
 /* smp.c */
 void set_cpu_affinity(int is_ap_mode);
-void set_vpn_balancing(const char *vpn_ifname);
+void set_vpn_balancing(const char *vpn_ifname, int is_server);
 #else
 #define set_cpu_affinity(x)
-#define set_vpn_balancing(ptr)
+#define set_vpn_balancing(ptr,val)
 #endif
 
 /* rstats.c */

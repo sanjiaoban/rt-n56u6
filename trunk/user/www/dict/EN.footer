@@ -517,6 +517,7 @@ menu4_2=流量监控
 menu4_2_1=即时流量图
 menu4_2_2=过去24小时流量图
 menu4_2_3=单日流量表
+menu4_2_4=按月
 #N/A
 switchpage=切换图表:
 Network=网路

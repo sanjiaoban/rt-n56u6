@@ -433,8 +433,8 @@ InetCheckLostItem2=WAN reconnect
 InetCheckLostItem3=Switch Ethernet WAN <=> USB Modem
 Tweaks_desc=Customized button actions and LED events.
 TweaksWPSAction=WPS Button Action
-TweaksWPSEventShort=WPS Short Press (1 sec):
-TweaksWPSEventLong=WPS Long Press (3 sec):
+TweaksEventShort=Button Short Press (1 sec):
+TweaksEventLong=Button Long Press (3 sec):
 TweaksWLTAction=Wi-Fi Button Action
 TweaksWLTEventShort=Wi-Fi Short Press (1 sec):
 TweaksWLTEventLong=Wi-Fi Long Press (3 sec):

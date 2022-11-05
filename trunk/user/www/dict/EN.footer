@@ -419,8 +419,8 @@ InetCheckLostItem2=重新连接WAN
 InetCheckLostItem3=交换机的以太网WAN <=> USB调制解调器
 Tweaks_desc=定制的按钮动作和LED事件。
 TweaksWPSAction=WPS按钮操作
-TweaksWPSEventShort=WPS短按（1秒）：
-TweaksWPSEventLong=WPS长按（3秒）：
+TweaksEventShort=短按 (1 秒):
+TweaksEventLong=长按 (3 秒):
 TweaksWLTAction=Wi-Fi按钮
 TweaksWLTEventShort=Wi-Fi短按（1秒）：
 TweaksWLTEventLong=Wi-Fi长按（3秒）：

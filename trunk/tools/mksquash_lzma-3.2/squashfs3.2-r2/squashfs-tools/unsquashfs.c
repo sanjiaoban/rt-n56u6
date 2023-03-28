@@ -25,6 +25,7 @@
 
 #define TRUE 1
 #define FALSE 0
+#include <sys/sysmacros.h>
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>

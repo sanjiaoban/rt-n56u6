@@ -25,6 +25,7 @@
 #define FALSE 0
 #define TRUE 1
 
+#include <sys/sysmacros.h>
 #include <pwd.h>
 #include <grp.h>
 #include <time.h>

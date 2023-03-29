@@ -30,6 +30,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update
+        sudo apt-get upgrade
         sudo apt-get install autoconf automake autopoint bison build-essential flex gawk gettext git gperf libtool pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev liblzma-dev texinfo python-docutils
     - name: Clone source code
       env:

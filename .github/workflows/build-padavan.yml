@@ -11,6 +11,9 @@ on:
   #    - master
 #  schedule:
 #    - cron: 0 8 * * 5
+  workflow_dispatch:
+  schedule:                                                    # 自动编译时间表
+    - cron: 0 12 1 * *
   watch:
     types: [started]
 

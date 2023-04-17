@@ -19,7 +19,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
@@ -30,7 +30,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update
-        sudo apt-get install autoconf automake autopoint bison build-essential flex gawk gettext git gperf libtool pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev liblzma-dev texinfo python3-docutils
+        sudo apt-get install autoconf automake autopoint bison build-essential flex gawk gettext git gperf libtool pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev liblzma-dev texinfo python-docutils
     - name: Clone source code
       env:
         KERNEL: 3.4
